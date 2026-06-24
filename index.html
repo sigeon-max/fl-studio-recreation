@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FL Studio Web Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Menu Bar -->
+    <div id="menu-bar">
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">Add</div>
+        <div class="menu-item">Patterns</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Options</div>
+        <div class="menu-item">Tools</div>
+        <div class="menu-item">Help</div>
+    </div>
+
+    <!-- Hint Panel -->
+    <div id="hint-panel">
+        <span id="hint-text">Move mouse over controls to see hints</span>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main-content">
+        <!-- Left Panel - Browser -->
+        <div id="browser-panel">
+            <div class="panel-header">
+                <span>Browser</span>
+                <div class="panel-menu-icon"></div>
+            </div>
+            <div class="browser-content">
+                <div class="browser-folder">
+                    <div class="folder-header">Packs</div>
+                    <div class="folder-content">
+                        <div class="browser-item">FLEX Free Packs</div>
+                        <div class="browser-item">SoundFonts</div>
+                        <div class="browser-item">One Shots</div>
+                        <div class="browser-item">Loops</div>
+                    </div>
+                </div>
+                <div class="browser-folder">
+                    <div class="folder-header">Instruments</div>
+                    <div class="folder-content">
+                        <div class="browser-item">FLEX</div>
+                        <div class="browser-item">Fruity SoundFont Player</div>
+                        <div class="browser-item">Sytrus</div>
+                        <div class="browser-item">Harmor</div>
+                    </div>
+                </div>
+                <div class="browser-folder">
+                    <div class="folder-header">Effects</div>
+                    <div class="folder-content">
+                        <div class="browser-item">OTT</div>
+                        <div class="browser-item">Fruity Reeverb 2</div>
+                        <div class="browser-item">Fruity Delay 3</div>
+                        <div class="browser-item">Maximus</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel - Channel Rack -->
+        <div id="channel-rack">
+            <div class="panel-header">
+                <span>Channel Rack</span>
+                <div class="panel-menu-icon"></div>
+            </div>
+            <div class="channel-content">
+                <div class="channel-item">
+                    <div class="channel-controls">
+                        <div class="channel-mute">M</div>
+                        <div class="channel-solo">S</div>
+                    </div>
+                    <div class="channel-name" data-hint="Channel: Kick">Kick</div>
+                    <div class="channel-steps">
+                        <!-- Step sequencer buttons -->
+                    </div>
+                    <div class="channel-volume">
+                        <div class="knob" data-hint="Channel Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="channel-pan">
+                        <div class="knob small" data-hint="Channel Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <div class="channel-controls">
+                        <div class="channel-mute">M</div>
+                        <div class="channel-solo">S</div>
+                    </div>
+                    <div class="channel-name" data-hint="Channel: Snare">Snare</div>
+                    <div class="channel-steps">
+                        <!-- Step sequencer buttons -->
+                    </div>
+                    <div class="channel-volume">
+                        <div class="knob" data-hint="Channel Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="channel-pan">
+                        <div class="knob small" data-hint="Channel Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <div class="channel-controls">
+                        <div class="channel-mute">M</div>
+                        <div class="channel-solo">S</div>
+                    </div>
+                    <div class="channel-name" data-hint="Channel: Hi-Hat">Hi-Hat</div>
+                    <div class="channel-steps">
+                        <!-- Step sequencer buttons -->
+                    </div>
+                    <div class="channel-volume">
+                        <div class="knob" data-hint="Channel Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="channel-pan">
+                        <div class="knob small" data-hint="Channel Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="channel-item">
+                    <div class="channel-controls">
+                        <div class="channel-mute">M</div>
+                        <div class="channel-solo">S</div>
+                    </div>
+                    <div class="channel-name" data-hint="Channel: Bass">Bass</div>
+                    <div class="channel-steps">
+                        <!-- Step sequencer buttons -->
+                    </div>
+                    <div class="channel-volume">
+                        <div class="knob" data-hint="Channel Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="channel-pan">
+                        <div class="knob small" data-hint="Channel Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="add-channel" data-hint="Add new channel">+</div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Mixer -->
+        <div id="mixer-panel">
+            <div class="panel-header">
+                <span>Mixer</span>
+                <div class="panel-menu-icon"></div>
+            </div>
+            <div class="mixer-content">
+                <div class="mixer-track">
+                    <div class="track-controls">
+                        <div class="track-mute">M</div>
+                        <div class="track-solo">S</div>
+                    </div>
+                    <div class="track-name" data-hint="Track: Master">Master</div>
+                    <div class="track-fader-container">
+                        <div class="track-meter"></div>
+                        <div class="track-fader" data-hint="Track Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="track-pan">
+                        <div class="knob small" data-hint="Track Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="mixer-track">
+                    <div class="track-controls">
+                        <div class="track-mute">M</div>
+                        <div class="track-solo">S</div>
+                    </div>
+                    <div class="track-name" data-hint="Track: Kick">Kick</div>
+                    <div class="track-fader-container">
+                        <div class="track-meter"></div>
+                        <div class="track-fader" data-hint="Track Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="track-pan">
+                        <div class="knob small" data-hint="Track Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="mixer-track">
+                    <div class="track-controls">
+                        <div class="track-mute">M</div>
+                        <div class="track-solo">S</div>
+                    </div>
+                    <div class="track-name" data-hint="Track: Snare">Snare</div>
+                    <div class="track-fader-container">
+                        <div class="track-meter"></div>
+                        <div class="track-fader" data-hint="Track Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="track-pan">
+                        <div class="knob small" data-hint="Track Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="mixer-track">
+                    <div class="track-controls">
+                        <div class="track-mute">M</div>
+                        <div class="track-solo">S</div>
+                    </div>
+                    <div class="track-name" data-hint="Track: Hi-Hat">Hi-Hat</div>
+                    <div class="track-fader-container">
+                        <div class="track-meter"></div>
+                        <div class="track-fader" data-hint="Track Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="track-pan">
+                        <div class="knob small" data-hint="Track Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="mixer-track">
+                    <div class="track-controls">
+                        <div class="track-mute">M</div>
+                        <div class="track-solo">S</div>
+                    </div>
+                    <div class="track-name" data-hint="Track: Bass">Bass</div>
+                    <div class="track-fader-container">
+                        <div class="track-meter"></div>
+                        <div class="track-fader" data-hint="Track Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="track-pan">
+                        <div class="knob small" data-hint="Track Pan: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Panel - Playlist -->
+    <div id="playlist-panel">
+        <div class="panel-header">
+            <span>Playlist</span>
+            <div class="panel-menu-icon"></div>
+            <div class="playlist-tools">
+                <div class="tool-button" data-hint="Draw tool">Pencil</div>
+                <div class="tool-button" data-hint="Select tool">Select</div>
+                <div class="tool-button" data-hint="Cut tool">Cut</div>
+                <div class="tool-button" data-hint="Zoom tool">Zoom</div>
+                <div class="tool-button" data-hint="Mute tool">Mute</div>
+                <div class="tool-button" data-hint="Slip tool">Slip</div>
+            </div>
+        </div>
+        <div class="playlist-content">
+            <div class="playlist-track-header">Master</div>
+            <div class="playlist-track">
+                <div class="playlist-track-name">Pattern 1</div>
+                <div class="playlist-track-content">
+                    <!-- Track content would go here -->
+                </div>
+            </div>
+            <div class="playlist-track">
+                <div class="playlist-track-name">Pattern 2</div>
+                <div class="playlist-track-content">
+                    <!-- Track content would go here -->
+                </div>
+            </div>
+            <div class="playlist-track">
+                <div class="playlist-track-name">Pattern 3</div>
+                <div class="playlist-track-content">
+                    <!-- Track content would go here -->
+                </div>
+            </div>
+            <div class="playlist-track">
+                <div class="playlist-track-name">Pattern 4</div>
+                <div class="playlist-track-content">
+                    <!-- Track content would go here -->
+                </div>
+            </div>
+        </div>
+        <div class="playlist-zoom">
+            <div class="zoom-bar" data-hint="Zoom: Click and drag vertically to zoom"></div>
+        </div>
+    </div>
+
+    <!-- Transport Controls -->
+    <div id="transport-controls">
+        <div class="transport-button" data-hint="Stop: Stop playback and return to start" id="stop-button">
+            <div class="stop-icon"></div>
+        </div>
+        <div class="transport-button" data-hint="Play: Start playback from current position" id="play-button">
+            <div class="play-icon"></div>
+        </div>
+        <div class="transport-button" data-hint="Record: Enable recording" id="record-button">
+            <div class="record-icon"></div>
+        </div>
+        <div class="transport-display" data-hint="Position: Current song position">
+            <div class="time-display">00:00:00:000</div>
+        </div>
+        <div class="transport-tempo" data-hint="Tempo: Song tempo in BPM">
+            <div class="tempo-display">140.0</div>
+        </div>
+        <div class="transport-pattern" data-hint="Pattern: Current pattern number">
+            <div class="pattern-display">Pattern 1</div>
+        </div>
+    </div>
+
+    <!-- Plugin Windows (Hidden by default) -->
+    <div id="plugin-window-container" class="hidden">
+        <!-- FLEX Plugin Window -->
+        <div id="flex-plugin-window" class="plugin-window hidden">
+            <div class="plugin-header">
+                <span>FLEX</span>
+                <div class="plugin-controls">
+                    <div class="plugin-menu-icon"></div>
+                    <div class="plugin-minimize"></div>
+                    <div class="plugin-maximize"></div>
+                    <div class="plugin-close"></div>
+                </div>
+            </div>
+            <div class="plugin-content">
+                <div class="flex-analysis" data-hint="Analysis: Double-click to cycle through display modes">
+                    <div class="analysis-display"></div>
+                </div>
+                <div class="flex-macros">
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 1</div>
+                        <div class="knob" data-hint="Macro 1: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 2</div>
+                        <div class="knob" data-hint="Macro 2: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 3</div>
+                        <div class="knob" data-hint="Macro 3: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 4</div>
+                        <div class="knob" data-hint="Macro 4: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 5</div>
+                        <div class="knob" data-hint="Macro 5: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 6</div>
+                        <div class="knob" data-hint="Macro 6: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 7</div>
+                        <div class="knob" data-hint="Macro 7: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="macro-control">
+                        <div class="macro-label">Macro 8</div>
+                        <div class="knob" data-hint="Macro 8: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="flex-pitch">
+                    <div class="pitch-controls">
+                        <div class="pitch-button" data-hint="Pitch Down: Decrease pitch by 1 semitone">-</div>
+                        <div class="pitch-display" data-hint="Pitch: Current pitch adjustment">0 st</div>
+                        <div class="pitch-button" data-hint="Pitch Up: Increase pitch by 1 semitone">+</div>
+                    </div>
+                    <div class="pitch-slider-container">
+                        <div class="slider horizontal" data-hint="Fine Pitch: Left-click and drag to adjust pitch in cents"></div>
+                    </div>
+                </div>
+                <div class="flex-filter">
+                    <div class="filter-controls">
+                        <div class="knob" data-hint="Filter Cutoff: Left-click and drag to adjust"></div>
+                        <div class="knob" data-hint="Filter Resonance: Left-click and drag to adjust"></div>
+                        <div class="knob" data-hint="Filter Envelope Amount: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="flex-envelopes">
+                    <div class="envelope-controls">
+                        <div class="envelope-control">
+                            <div class="envelope-label">A</div>
+                            <div class="knob small" data-hint="Attack: Left-click and drag to adjust"></div>
+                        </div>
+                        <div class="envelope-control">
+                            <div class="envelope-label">H</div>
+                            <div class="knob small" data-hint="Hold: Left-click and drag to adjust"></div>
+                        </div>
+                        <div class="envelope-control">
+                            <div class="envelope-label">D</div>
+                            <div class="knob small" data-hint="Decay: Left-click and drag to adjust"></div>
+                        </div>
+                        <div class="envelope-control">
+                            <div class="envelope-label">S</div>
+                            <div class="knob small" data-hint="Sustain: Left-click and drag to adjust"></div>
+                        </div>
+                        <div class="envelope-control">
+                            <div class="envelope-label">R</div>
+                            <div class="knob small" data-hint="Release: Left-click and drag to adjust"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-effects">
+                    <div class="effect-unit" id="flex-filter-effect">
+                        <div class="effect-header">Filter</div>
+                        <div class="effect-controls">
+                            <div class="knob small" data-hint="Filter Cutoff: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Filter Resonance: Left-click and drag to adjust"></div>
+                            <div class="effect-type" data-hint="Filter Type: Click to change filter type">LP 12</div>
+                        </div>
+                    </div>
+                    <div class="effect-unit" id="flex-delay-effect">
+                        <div class="effect-header">Delay</div>
+                        <div class="effect-controls">
+                            <div class="knob small" data-hint="Delay Time: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Delay Feedback: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Delay Mix: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Delay Color: Left-click and drag to adjust"></div>
+                        </div>
+                    </div>
+                    <div class="effect-unit" id="flex-reverb-effect">
+                        <div class="effect-header">Reverb</div>
+                        <div class="effect-controls">
+                            <div class="knob small" data-hint="Reverb Decay: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Reverb Size: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Reverb Mix: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Reverb Color: Left-click and drag to adjust"></div>
+                        </div>
+                    </div>
+                    <div class="effect-unit" id="flex-limiter-effect">
+                        <div class="effect-header">Limiter</div>
+                        <div class="effect-controls">
+                            <div class="knob small" data-hint="Limiter Pre-gain: Left-click and drag to adjust"></div>
+                            <div class="knob small" data-hint="Limiter Mix: Left-click and drag to adjust"></div>
+                            <div class="effect-type" data-hint="Limiter Type: Click to change limiter type">Custom</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-output">
+                    <div class="output-controls">
+                        <div class="output-label">Output</div>
+                        <div class="slider vertical" data-hint="Output Volume: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="flex-logo-bar">
+                    <div class="flex-logo-expand"></div>
+                    <div class="flex-logo-info"></div>
+                    <div class="flex-logo"></div>
+                </div>
+            </div>
+            <div class="flex-preset-panel">
+                <div class="preset-panel-header">
+                    <span>Presets</span>
+                    <div class="preset-panel-controls">
+                        <div class="preset-nav-prev" data-hint="Previous Preset: Load previous preset in list"></div>
+                        <div class="preset-nav-next" data-hint="Next Preset: Load next preset in list"></div>
+                        <div class="preset-menu" data-hint="Preset Menu: Right-click to open preset menu"></div>
+                    </div>
+                </div>
+                <div class="preset-tabs">
+                    <div class="preset-tab active" data-hint="Packs: Browse installed packs">Packs</div>
+                    <div class="preset-tab" data-hint="All: Browse all presets">All</div>
+                    <div class="preset-tab" data-hint="Recent: Browse recently used presets">Recent</div>
+                    <div class="preset-tab" data-hint="Favorites: Browse favorite presets">Favorites</div>
+                    <div class="preset-tab" data-hint="Library: Browse available packs for download">Library</div>
+                    <div class="preset-tab" data-hint="Store: Browse packs available for purchase">Store</div>
+                </div>
+                <div class="preset-content">
+                    <div class="preset-packs-list">
+                        <div class="preset-pack active" data-hint="Pack: Essential Pianos">Essential Pianos</div>
+                        <div class="preset-pack" data-hint="Pack: Essential Guitars">Essential Guitars</div>
+                        <div class="preset-pack" data-hint="Pack: Bass Utopia">Bass Utopia</div>
+                        <div class="preset-pack" data-hint="Pack: Drumful Treasure">Drumful Treasure</div>
+                        <div class="preset-pack" data-hint="Pack: Electronica">Electronica</div>
+                    </div>
+                    <div class="preset-list">
+                        <div class="preset-item active" data-hint="Preset: Grand Piano">Grand Piano</div>
+                        <div class="preset-item" data-hint="Preset: Upright Piano">Upright Piano</div>
+                        <div class="preset-item" data-hint="Preset: Electric Piano">Electric Piano</div>
+                        <div class="preset-item" data-hint="Preset: Toy Piano">Toy Piano</div>
+                        <div class="preset-item" data-hint="Preset: Honky Tonk">Honky Tonk</div>
+                        <div class="preset-item" data-hint="Preset: Clavinet">Clavinet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SoundFont Player Plugin Window -->
+        <div id="soundfont-plugin-window" class="plugin-window hidden">
+            <div class="plugin-header">
+                <span>Fruity SoundFont Player</span>
+                <div class="plugin-controls">
+                    <div class="plugin-menu-icon"></div>
+                    <div class="plugin-minimize"></div>
+                    <div class="plugin-maximize"></div>
+                    <div class="plugin-close"></div>
+                </div>
+            </div>
+            <div class="plugin-content">
+                <div class="soundfont-display">
+                    <div class="soundfont-name" data-hint="SoundFont: Currently loaded SoundFont">No SoundFont Loaded</div>
+                    <div class="soundfont-patch" data-hint="Patch: Currently selected patch">No Patch Selected</div>
+                </div>
+                <div class="soundfont-controls">
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Volume</div>
+                        <div class="knob" data-hint="Volume: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Pan</div>
+                        <div class="knob" data-hint="Pan: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Reverb</div>
+                        <div class="knob" data-hint="Reverb Send: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Chorus</div>
+                        <div class="knob" data-hint="Chorus Send: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Resonance</div>
+                        <div class="knob" data-hint="Filter Resonance: Left-click and drag to adjust"></div>
+                    </div>
+                    <div class="soundfont-parameter">
+                        <div class="parameter-label">Cutoff</div>
+                        <div class="knob" data-hint="Filter Cutoff: Left-click and drag to adjust"></div>
+                    </div>
+                </div>
+                <div class="soundfont-patches">
+                    <div class="patches-header">
+                        <span>Patches</span>
+                        <div class="patches-search" data-hint="Search: Type to search patches"></div>
+                    </div>
+                    <div class="patches-list">
+                        <!-- Patch list would be populated dynamically -->
+                    </div>
+                </div>
+                <div class="soundfont-load">
+                    <div class="load-button" data-hint="Load SoundFont: Click to load a .sf2, .sf3, or .sf4 file">Load SoundFont</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- OTT Plugin Window -->
+        <div id="ott-plugin-window" class="plugin-window hidden">
+            <div class="plugin-header">
+                <span>OTT</span>
+                <div class="plugin-controls">
+                    <div class="plugin-menu-icon"></div>
+                    <div class="plugin-minimize"></div>
+                    <div class="plugin-maximize"></div>
+                    <div class="plugin-close"></div>
+                </div>
+            </div>
+            <div class="plugin-content">
+                <div class="ott-meters">
+                    <div class="ott-meter">
+                        <div class="meter-label">L</div>
+                        <div class="meter-bar">
+                            <div class="meter-fill"></div>
+                        </div>
+                    </div>
+                    <div class="ott-meter">
+                        <div class="meter-label">R</div>
+                        <div class="meter-bar">
+                            <div class="meter-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ott-controls">
+                    <div class="ott-parameter">
+                        <div class="parameter-label">Depth</div>
+                        <div class="knob" data-hint="Depth: Compression intensity (0-100%)"></div>
+                        <div class="parameter-value">70%</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">Time</div>
+                        <div class="knob" data-hint="Time: Attack/release scaling (0-100%)"></div>
+                        <div class="parameter-value">50%</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">X-Over Low</div>
+                        <div class="knob" data-hint="Low/Mid Crossover: 40-400 Hz"></div>
+                        <div class="parameter-value">88 Hz</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">X-Over High</div>
+                        <div class="knob" data-hint="Mid/High Crossover: 1000-8000 Hz"></div>
+                        <div class="parameter-value">2500 Hz</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">Gain Low</div>
+                        <div class="knob" data-hint="Low Band Gain: -12 to +12 dB"></div>
+                        <div class="parameter-value">0 dB</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">Gain Mid</div>
+                        <div class="knob" data-hint="Mid Band Gain: -12 to +12 dB"></div>
+                        <div class="parameter-value">0 dB</div>
+                    </div>
+                    <div class="ott-parameter">
+                        <div class="parameter-label">Gain High</div>
+                        <div class="knob" data-hint="High Band Gain: -12 to +12 dB"></div>
+                        <div class="parameter-value">0 dB</div>
+                    </div>
+                </div>
+                <div class="ott-band-meters">
+                    <div class="band-meter">
+                        <div class="band-meter-label">Low GR</div>
+                        <div class="band-meter-bar">
+                            <div class="band-meter-fill"></div>
+                        </div>
+                    </div>
+                    <div class="band-meter">
+                        <div class="band-meter-label">Mid GR</div>
+                        <div class="band-meter-bar">
+                            <div class="band-meter-fill"></div>
+                        </div>
+                    </div>
+                    <div class="band-meter">
+                        <div class="band-meter-label">High GR</div>
+                        <div class="band-meter-bar">
+                            <div class="band-meter-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrollmarsey -->
+    <img id="scrollmarsey" src="https://files.catbox.moe/v06ukd.webp" alt="Scrollmarsey" data-fool3="false">
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="hidden">
+        <div class="context-menu-item" data-action="type-value">Type in value</div>
+        <div class="context-menu-item" data-action="set">Set</div>
+        <div class="context-menu-item" data-action="reset">Reset</div>
+        <div class="context-menu-item" data-action="copy-value">Copy value</div>
+        <div class="context-menu-item" data-action="paste-value">Paste value</div>
+        <div class="context-menu-separator"></div>
+        <div class="context-menu-item" data-action="create-automation">Create automation clip</div>
+        <div class="context-menu-item" data-action="link-controller">Link to controller</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
